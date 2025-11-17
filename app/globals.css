@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 92.143 35.897% 84.706%;
+  --surface: 0 0% 100%;
+  --surfaceMuted: 78 35.714% 94.51%;
+  --border: 212.143 35.897% 84.706%;
+  --text: 207 24.39% 16.078%;
+  --muted: 213.529 16.832% 39.608%;
+  --primary: 213.529 18.889% 64.706%;
+  --primaryStrong: 212.308 19.797% 38.627%;
+  --accent: 93.529 18.889% 64.706%;
+  --accentStrong: 33.529 18.889% 64.706%;
+  --highlight: 87.273 45.833% 90.588%;
+  --gradient: 212.143 35.897% 84.706%;
+  --gradient-1: 212.143 35.897% 84.706%;
+  --gradient-2: 92.143 35.897% 84.706%;
+  --gradient-3: 93.529 18.889% 64.706%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-background: hsl(var(--background));
+  --color-surface: hsl(var(--surface));
+  --color-surfaceMuted: hsl(var(--surfaceMuted));
+  --color-border: hsl(var(--border));
+  --color-text: hsl(var(--text));
+  --color-muted: hsl(var(--muted));
+  --color-primary: hsl(var(--primary));
+  --color-primaryStrong: hsl(var(--primaryStrong));
+  --color-accent: hsl(var(--accent));
+  --color-accentStrong: hsl(var(--accentStrong));
+  --color-highlight: hsl(var(--highlight));
+  --color-gradient: hsl(var(--gradient));
+  --color-gradient-1: hsl(var(--gradient-1));
+  --color-gradient-2: hsl(var(--gradient-2));
+  --color-gradient-3: hsl(var(--gradient-3));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-text;
+  }
 }
