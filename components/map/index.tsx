@@ -79,10 +79,6 @@ export default function Map({
     ? selected?.center ?? derivedCenter
     : manualPosition ?? selected?.center ?? derivedCenter;
 
-  const mapContainerClassName = `w-full h-[42vh] min-h-[240px] sm:h-[48vh] sm:min-h-[300px] md:h-[55vh] md:min-h-[360px] lg:h-[60vh] lg:min-h-[420px] ${
-    className ?? ""
-  }`;
-
   async function handleMapSelection(
     position: LatLngTuple,
     boundsBBox: BoundingBox
@@ -161,7 +157,7 @@ export default function Map({
           scrollWheelZoom
           zoomControl={false}
           attributionControl={false}
-          className={mapContainerClassName}
+          className={"w-full h-[40vh]"}
         >
           <TileLayer
             key={baseLayer.id}
