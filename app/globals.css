@@ -1,21 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: 92.143 35.897% 84.706%;
+  --background: 200 95% 97%;
   --surface: 0 0% 100%;
-  --surfaceMuted: 78 35.714% 94.51%;
-  --border: 212.143 35.897% 84.706%;
-  --text: 207 24.39% 16.078%;
-  --muted: 213.529 16.832% 39.608%;
-  --primary: 213.529 18.889% 64.706%;
-  --primaryStrong: 212.308 19.797% 38.627%;
-  --accent: 93.529 18.889% 64.706%;
-  --accentStrong: 33.529 18.889% 64.706%;
-  --highlight: 87.273 45.833% 90.588%;
-  --gradient: 212.143 35.897% 84.706%;
-  --gradient-1: 212.143 35.897% 84.706%;
-  --gradient-2: 92.143 35.897% 84.706%;
-  --gradient-3: 93.529 18.889% 64.706%;
+  --surfaceMuted: 198 80% 94%;
+  --border: 198 60% 84%;
+  --text: 210 30% 18%;
+  --muted: 210 20% 40%;
+
+  --primary: 204 95% 50%;
+  --primaryStrong: 204 98% 40%;
+  --accent: 135 70% 50%;
+  --accentStrong: 135 75% 40%;
+  --highlight: 190 95% 90%;
+
+  --gradient: 200 95% 97%;
+  --gradient-1: 204 95% 50%;
+  --gradient-2: 135 70% 50%;
+  --gradient-3: 50 95% 60%;
+
 }
 
 @theme {
