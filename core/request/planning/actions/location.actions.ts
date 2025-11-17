@@ -5,8 +5,8 @@ import {
   searchLocationsService,
 } from "../services/location.service";
 import {
+  LocationSelection,
   type LocationSearchByBoundingBoxPayload,
-  type LocationSelection,
 } from "../types";
 
 export async function searchLocationsAction(
@@ -39,6 +39,14 @@ export async function searchLocationsAction(
 
 export function resetLocationSearchAction() {
   planningStore.getState().resetSearch();
+}
+
+export function setSelectedLocationAction(
+  location: LocationSelection | null
+): void {
+  const { setProperty, setSyncViewEnabled } = planningStore.getState();
+  setProperty("selected", location);
+  setSyncViewEnabled(true);
 }
 
 export async function searchLocationsByBoundingBoxAction({

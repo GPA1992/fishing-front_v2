@@ -4,6 +4,7 @@ import {
   planningStore,
   resetLocationSearchAction,
   searchLocationsAction,
+  setSelectedLocationAction,
 } from "@/core/request";
 import { MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -35,14 +36,14 @@ export default function Search() {
 
   return (
     <>
-      <div className="relative space-y-4 p-0 sm:p-0 mb-4">
-        <div className="flex items-center gap-2">
-          <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-[var(--color-accent)] text-[var(--color-primary-strong)] shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10">
+      <div className="relative mb-4 space-y-3 sm:space-y-4 lg:space-y-5">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-[var(--color-accent)] text-[var(--color-primary-strong)] shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10 lg:h-11 lg:w-11">
             <MapPin className="h-5 w-5" />
           </span>
 
           <div>
-            <h2 className="truncate text-sm font-semibold text-[var(--color-primary-strong)] sm:text-base sm:max-w-[490px] max-w-[260px]">
+            <h2 className="max-w-[260px] truncate text-sm font-semibold text-[var(--color-primary-strong)] sm:max-w-[490px] sm:text-base lg:max-w-full">
               Destino
             </h2>
             <p className="text-[10px] font-medium text-[var(--color-muted)] sm:text-[13px]">
@@ -78,7 +79,7 @@ export default function Search() {
               onChange={(event) => setTerm(event.target.value)}
               onFocus={() => setOpen(trimmedTerm.length > 0)}
               placeholder="Cidade, bairro ou região"
-              className="theme-input w-full rounded-xl border-none bg-[var(--color-surface)] px-3.5 py-2.5 pl-11 text-sm text-[var(--color-primary-strong)] shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition placeholder:opacity-80 sm:px-4 sm:py-3 sm:pl-12 sm:text-base"
+              className="theme-input w-full rounded-xl border-none bg-[var(--color-surface)] px-3.5 py-2.5 pl-11 text-sm text-[var(--color-primary-strong)] shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition placeholder:opacity-80 sm:px-4 sm:py-3 sm:pl-12 sm:text-base lg:py-3.5"
             />
             {loading && (
               <div className="absolute inset-y-0 right-3 flex items-center text-xs font-medium text-[var(--color-primary)]">
@@ -87,7 +88,7 @@ export default function Search() {
             )}
 
             {open && (
-              <ul className="absolute left-0 right-0 top-[110%] z-30 max-h-60 overflow-y-auto rounded-xl border-none bg-[var(--color-surface)] shadow-xl shadow-emerald-900/10">
+              <ul className="absolute left-0 right-0 top-[110%] z-30 max-h-64 overflow-y-auto rounded-xl border-none bg-[var(--color-surface)] shadow-xl shadow-emerald-900/10 sm:max-h-72 lg:max-h-80">
                 {results.length === 0 && !loading && (
                   <li className="px-4 py-3 text-sm text-[var(--color-muted)]">
                     Nada encontrado
@@ -98,7 +99,7 @@ export default function Search() {
                     <button
                       type="button"
                       onClick={() => {
-                        setProperty("selected", item);
+                        setSelectedLocationAction(item);
                         setTerm("");
                         resetLocationSearchAction();
                         setOpen(false);

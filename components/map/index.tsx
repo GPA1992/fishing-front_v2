@@ -79,7 +79,7 @@ export default function Map({
     ? selected?.center ?? derivedCenter
     : manualPosition ?? selected?.center ?? derivedCenter;
 
-  const mapContainerClassName = `h-[38vh] min-h-[220px] sm:h-[40vh] sm:min-h-[260px] md:h-[45vh] md:min-h-[300px] w-full ${
+  const mapContainerClassName = `w-full h-[42vh] min-h-[240px] sm:h-[48vh] sm:min-h-[300px] md:h-[55vh] md:min-h-[360px] lg:h-[60vh] lg:min-h-[420px] ${
     className ?? ""
   }`;
 
@@ -107,12 +107,12 @@ export default function Map({
   return (
     <>
       <div className="relative z-0 overflow-hidden rounded-2xl shadow-2xl shadow-emerald-900/10 border-none">
-        <div className="absolute bottom-3 left-3 z-[1000]">
-          <div className="relative rounded-md p-1 w-fit space-y-2">
+        <div className="absolute bottom-3 left-3 z-[1000] sm:bottom-4 sm:left-4">
+          <div className="relative w-fit space-y-2 rounded-md p-1">
             {baseSelectorOpen && (
               <div
                 className={cn(
-                  "absolute bottom-full mb-2 left-0 bg-white p-2 rounded-md shadow-lg z-10 flex flex-col gap-2"
+                  "absolute bottom-full left-0 z-10 mb-2 flex flex-col gap-2 rounded-md bg-white p-2 shadow-lg"
                 )}
               >
                 {BASE_LAYERS.map((layer) => (
@@ -137,9 +137,9 @@ export default function Map({
               </div>
             )}
 
-            <div className="border w-max rounded-md border-emerald-700 bg-white shadow-sm">
+            <div className="w-max rounded-md border border-emerald-700 bg-white shadow-sm">
               <div
-                className="w-[60px] h-[60px] rounded-md overflow-hidden cursor-pointer border border-white"
+                className="h-[56px] w-[56px] cursor-pointer overflow-hidden rounded-md border border-white sm:h-[60px] sm:w-[60px]"
                 onClick={() => setBaseSelectorOpen((prev) => !prev)}
                 aria-label="Alterar mapa base"
                 role="button"
