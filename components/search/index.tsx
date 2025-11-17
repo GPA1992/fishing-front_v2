@@ -46,7 +46,7 @@ export default function Search() {
             <h2 className="max-w-[260px] truncate text-sm font-semibold text-[var(--color-primary-strong)] sm:max-w-[490px] sm:text-base lg:max-w-full">
               Destino
             </h2>
-            <p className="text-[10px] font-medium text-[var(--color-muted)] sm:text-[13px]">
+            <p className="text-[10px] font-medium text-muted sm:text-[13px]">
               Busque por cidade, bairro, região ou marque a localização exata no
               mapa.
             </p>
@@ -90,7 +90,7 @@ export default function Search() {
             {open && (
               <ul className="absolute left-0 right-0 top-[110%] z-30 max-h-64 overflow-y-auto rounded-xl border-none bg-[var(--color-surface)] shadow-xl shadow-emerald-900/10 sm:max-h-72 lg:max-h-80">
                 {results.length === 0 && !loading && (
-                  <li className="px-4 py-3 text-sm text-[var(--color-muted)]">
+                  <li className="px-4 py-3 text-sm text-muted">
                     Nada encontrado
                   </li>
                 )}

@@ -180,8 +180,8 @@ export default function Map({
           {syncViewEnabled && <SyncView center={markerPosition} />}
         </MapContainer>
       </div>
-      <span className="text-sm italic text-[var(--color-muted)] mb-3 pl-1 px-1">
-        Arraste, de zomm, clique para marcar o local.
+      <span className="text-sm italic text-muted mb-3 pl-1 px-1">
+        Arraste, de zoom, clique para marcar o local.
       </span>
     </>
   );

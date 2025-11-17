@@ -46,7 +46,7 @@ export default function PlanningData() {
                   {selected && !selected.locationName && `${selected?.name}`}
                 </h2>
                 {!selected && (
-                  <p className="text-xs font-medium text-[var(--color-muted)] sm:text-[13px]">
+                  <p className="text-xs font-medium text-muted sm:text-[13px]">
                     Toque no mapa para definir o local.
                   </p>
                 )}
