@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Geist_Mono, Rubik } from "next/font/google";
 import "./globals.css";
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -20,7 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rubik.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${rubik.variable} ${geistMono.variable} antialiased`}>
+        <main className="min-h-screen min-w-screen">
+          {/*       <ThemePanel /> */}
+          <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 pb-10 pt-6">
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }

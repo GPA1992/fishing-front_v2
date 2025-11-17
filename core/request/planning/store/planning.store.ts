@@ -12,6 +12,7 @@ type State = {
   error: string | null;
   selected: LocationSelection | null;
   syncViewEnabled: boolean;
+  hasHydrated: boolean;
 };
 
 const initial: State = {
@@ -23,6 +24,7 @@ const initial: State = {
   error: null,
   selected: null,
   syncViewEnabled: true,
+  hasHydrated: false,
 };
 
 type Actions = {
@@ -33,6 +35,7 @@ type Actions = {
   setSyncViewEnabled: (value: boolean) => void;
   isTargetIsFilled: () => boolean;
   isLocationIsFilled: () => boolean;
+  setHasHydrated: (value: boolean) => void;
 };
 
 const initialSearchState: Pick<
@@ -65,10 +68,17 @@ export const planningStore = create<State & Actions>()(
           const { selected } = get();
           return Boolean(selected);
         },
+        setHasHydrated: (value) =>
+          set((state) => ({ ...state, hasHydrated: value })),
       }),
       {
         name: "planningStore",
         storage: createJSONStorage(() => customStorage),
+        onRehydrateStorage: () => (state, error) => {
+          if (error) return;
+          // chama a action da própria store
+          state?.setHasHydrated(true);
+        },
       }
     )
   )
