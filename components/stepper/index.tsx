@@ -86,7 +86,10 @@ export default function Stepper() {
           return (
             <li
               key={href}
-              className="flex flex-1 items-center gap-2.5 sm:gap-3 "
+              className={cn(
+                "flex items-center gap-2.5 sm:gap-3 px-1",
+                index < steps.length - 1 ? "flex-1 w-max" : "w-fit"
+              )}
             >
               <Link
                 href={href}
