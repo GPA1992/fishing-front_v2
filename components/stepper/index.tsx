@@ -5,6 +5,7 @@ import {
   CalendarClock,
   ChartColumnDecreasing,
   CheckIcon,
+  Fish,
   LucideIcon,
   MapPin,
   X,
@@ -31,8 +32,8 @@ const steps: Step[] = [
   },
   {
     href: "/planejamento/peixe",
-    title: "Resultado",
-    icon: ChartColumnDecreasing,
+    title: "Peixe",
+    icon: Fish,
   },
 ];
 export default function Stepper() {
@@ -49,7 +50,7 @@ export default function Stepper() {
   }
 
   return (
-    <nav aria-label="Progresso do planejamento" className="w-full">
+    <nav aria-label="Progresso do planejamento" className="w-full ">
       <ol className="flex w-full flex-wrap items-center gap-2.5 sm:gap-4">
         {steps.map(({ href, icon: Icon }, index) => {
           const active = activeIndex === index;

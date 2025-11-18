@@ -2,7 +2,7 @@
 
 import { planningStore } from "@/core/request";
 import { LoadingInline } from "../loading";
-import { Fish, MapPinCheckInside } from "lucide-react";
+import { Fish } from "lucide-react";
 
 export default function PlanningData() {
   const selected = planningStore((state) => state.selected);
@@ -35,7 +35,7 @@ export default function PlanningData() {
               />
             ) : (
               <>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-primary-strong)] opacity-80">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-(--color-primary-strong) opacity-80">
                   Planejamento
                 </p>
                 <h2 className="max-w-[260px] truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px] sm:text-base lg:max-w-none">

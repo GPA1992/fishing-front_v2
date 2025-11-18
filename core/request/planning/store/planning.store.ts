@@ -8,6 +8,7 @@ type State = {
   markLoading: boolean;
   targetDate: Date | null;
   targetHour: string | null;
+  selectedFish: string[];
   results: LocationSearchResult[];
   error: string | null;
   selected: LocationSelection | null;
@@ -20,6 +21,7 @@ const initial: State = {
   markLoading: false,
   targetDate: null,
   targetHour: null,
+  selectedFish: [],
   results: [],
   error: null,
   selected: null,
@@ -59,7 +61,8 @@ export const planningStore = create<State & Actions>()(
         reset: () => set(initial),
         resetSearch: () =>
           set((state) => ({ ...state, ...initialSearchState })),
-        resetSelection: () => set((state) => ({ ...state, selected: null })),
+        resetSelection: () =>
+          set((state) => ({ ...state, selected: null, selectedFish: [] })),
         isTargetIsFilled: () => {
           const { targetDate, targetHour } = get();
           return Boolean(targetDate);
