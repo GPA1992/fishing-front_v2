@@ -2,38 +2,25 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 import { customStorage } from "@/core/request";
+import { DEFAULT_BASE_LAYER_ID, type BaseLayer } from "./base-layers";
 
-import { DEFAULT_BASE_LAYER_ID, type BaseLayerId } from "./base-layers";
-
-type MapState = {
-  baseLayerId: BaseLayerId;
-  zoom: number | null;
-  hasHydrated: boolean;
+type State = {
+  baseLayerId: BaseLayer["id"];
 };
 
-type MapActions = {
-  setBaseLayer: (id: BaseLayerId) => void;
-  setZoom: (zoom: number) => void;
-  setHasHydrated: (value: boolean) => void;
+type Actions = {
+  setBaseLayerId: (id: BaseLayer["id"]) => void;
 };
 
-export const mapStore = create<MapState & MapActions>()(
+export const mapStore = create<State & Actions>()(
   persist(
     (set) => ({
       baseLayerId: DEFAULT_BASE_LAYER_ID,
-      zoom: null,
-      hasHydrated: false,
-      setBaseLayer: (id) => set(() => ({ baseLayerId: id })),
-      setZoom: (zoom) => set(() => ({ zoom })),
-      setHasHydrated: (value) => set(() => ({ hasHydrated: value })),
+      setBaseLayerId: (id) => set({ baseLayerId: id }),
     }),
     {
       name: "mapStore",
       storage: createJSONStorage(() => customStorage),
-      onRehydrateStorage: () => (state, error) => {
-        if (error) return;
-        state?.setHasHydrated(true);
-      },
     }
   )
 );

@@ -21,10 +21,4 @@ export const BASE_LAYERS = [
 ] as const;
 
 export type BaseLayer = (typeof BASE_LAYERS)[number];
-export type BaseLayerId = BaseLayer["id"];
-
-export const DEFAULT_BASE_LAYER_ID: BaseLayerId = BASE_LAYERS[0].id;
-
-export function getBaseLayerById(id: BaseLayerId): BaseLayer {
-  return BASE_LAYERS.find((layer) => layer.id === id) ?? BASE_LAYERS[0];
-}
+export const DEFAULT_BASE_LAYER_ID = BASE_LAYERS[0].id;

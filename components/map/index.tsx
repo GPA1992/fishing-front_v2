@@ -8,6 +8,8 @@ import { type LatLngTuple } from "leaflet";
 
 import MapClickHandler from "./MapClickHandler";
 import SyncView from "./SyncView";
+import { BASE_LAYERS } from "./base-layers";
+import { mapStore } from "./store";
 import { boundingBoxCenter } from "./bounding-box";
 import { ensureDefaultMarkerConfig } from "./configure-default-marker";
 import {
@@ -21,28 +23,6 @@ const DEFAULT_CENTER: LatLngTuple = [-24.02323, -48.9034806];
 const DEFAULT_ZOOM = 14;
 
 ensureDefaultMarkerConfig();
-
-const BASE_LAYERS = [
-  {
-    id: "osm",
-    label: "OSM",
-    baseLayerName: "openstreetmap",
-    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    previewUrl: "https://tile.openstreetmap.org/3/2/3.png",
-  },
-  {
-    id: "esri",
-    label: "Esri Satélite",
-    baseLayerName: "esri_satellite",
-    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    attribution:
-      "Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, METI, TomTom, 2012",
-    previewUrl:
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/3/2/2",
-  },
-] as const;
 
 interface MapProps {
   bbox?: BoundingBox;
@@ -69,7 +49,12 @@ export default function Map({
     return initialCenter;
   }, [activeBBox, initialCenter]);
 
-  const [baseLayer, setBaseLayer] = useState(BASE_LAYERS[0]);
+  const baseLayerId = mapStore((state) => state.baseLayerId);
+  const setBaseLayerId = mapStore((state) => state.setBaseLayerId);
+  const baseLayer = useMemo(
+    () => BASE_LAYERS.find((layer) => layer.id === baseLayerId) ?? BASE_LAYERS[0],
+    [baseLayerId]
+  );
   const [baseSelectorOpen, setBaseSelectorOpen] = useState(false);
   const [manualPosition, setManualPosition] = useState<LatLngTuple | null>(
     null
@@ -115,7 +100,7 @@ export default function Map({
                   <div
                     key={layer.id}
                     onClick={() => {
-                      setBaseLayer(layer as any);
+                      setBaseLayerId(layer.id);
                       setBaseSelectorOpen(false);
                     }}
                     className={cn(
