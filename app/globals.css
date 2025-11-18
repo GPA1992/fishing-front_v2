@@ -50,6 +50,17 @@
   }
 
   body {
-    @apply bg-background text-text;
+    @apply text-text;
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(circle at 20% 25%, hsla(200 80% 70% / 0.52) 0%, hsla(200 80% 70% / 0) 38%),
+      radial-gradient(circle at 75% 20%, hsla(205 75% 65% / 0.42) 0%, hsla(205 75% 65% / 0) 33%),
+      radial-gradient(circle at 60% 70%, hsla(195 70% 66% / 0.42) 0%, hsla(195 70% 66% / 0) 40%),
+      linear-gradient(
+        135deg,
+        hsl(135 55% 88%) 0%,
+        hsl(140 52% 80%) 55%,
+        hsl(185 55% 86%) 100%
+      );
   }
 }
