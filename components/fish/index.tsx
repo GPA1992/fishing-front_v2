@@ -118,7 +118,7 @@ export function Fish() {
       <div
         className={cn(
           "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 auto-rows-max",
-          "pt-2 h-[40vh] px-0 overflow-y-auto scroll-smooth pb-2 fish-scroll"
+          "pt-2 h-[40vh] px-0 overflow-y-auto scroll-smooth pb-12 fish-scroll pr-2"
         )}
       >
         {filteredFish.length === 0 && (
@@ -141,7 +141,7 @@ export function Fish() {
               }`}
             >
               <div className="relative overflow-hidden rounded-xl bg-surface shadow-[0_6px_12px_rgba(0,0,0,0.05)] ring-1 ring-[color-mix(in_srgb,var(--color-border)_85%,transparent_15%)] transition duration-200 group-hover:shadow-[0_8px_16px_rgba(0,0,0,0.08)]">
-                <div className="relative h-14 w-full overflow-hidden sm:h-16 border">
+                <div className="relative h-20 w-full overflow-hidden sm:h-24 border">
                   <Image
                     src={`/peixes/${fish.image}`}
                     alt={fish.name}
@@ -171,15 +171,15 @@ export function Fish() {
                   )}
                 </div>
 
-                <div className="flex items-start justify-between gap-2 px-2.5 py-2.5">
+                <div className="flex items-start justify-between gap-2 px-2.5 py-2">
                   <div className="space-y-0.5">
                     <p className="text-[11px] font-semibold text-primaryStrong sm:text-sm">
                       {fish.name}
                     </p>
                     <p className="text-[10px] text-muted sm:text-xs">
                       {isSelected
-                        ? "Na sua lista. Toque para remover."
-                        : "Clique para adicionar a sua lista."}
+                        ? "Toque para remover."
+                        : "Toque para adicionar."}
                     </p>
                   </div>
                   <span className="inline-flex items-center justify-center rounded-md bg-[color-mix(in_srgb,var(--color-highlight)_65%,var(--color-surface)_35%)] px-2 py-0.5 text-[9px] font-semibold text-primaryStrong ring-1 ring-[color-mix(in_srgb,var(--color-primary)_18%,var(--color-border)_82%)]">
