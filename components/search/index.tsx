@@ -17,7 +17,7 @@ export default function Search() {
   const trimmedTerm = debouncedTerm.trim();
   const results = planningStore((state) => state.results);
   const loading = planningStore((state) => state.searcLoading);
-  const setProperty = planningStore((state) => state.setProperty);
+
   useEffect(() => {
     setOpen(trimmedTerm.length > 0);
   }, [trimmedTerm]);
@@ -38,12 +38,12 @@ export default function Search() {
     <>
       <div className="relative mb-4 space-y-3 sm:space-y-4 lg:space-y-5">
         <div className="flex items-center gap-2 sm:gap-3">
-          <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-[var(--color-accent)] text-[var(--color-primary-strong)] shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10 lg:h-11 lg:w-11">
+          <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-accent text-primaryStrong shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10 lg:h-11 lg:w-11">
             <MapPin className="h-5 w-5" />
           </span>
 
           <div>
-            <h2 className="max-w-[260px] truncate text-sm font-semibold text-[var(--color-primary-strong)] sm:max-w-[490px] sm:text-base lg:max-w-full">
+            <h2 className="max-w-[260px] truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px] sm:text-base lg:max-w-full">
               Destino
             </h2>
             <p className="text-[10px] font-medium text-muted sm:text-[13px]">
@@ -58,7 +58,7 @@ export default function Search() {
             Buscar
           </label>
           <div className="relative">
-            <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[var(--color-primary)] opacity-80">
+            <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-primary opacity-80">
               <svg
                 aria-hidden="true"
                 className="h-5 w-5"
@@ -79,16 +79,16 @@ export default function Search() {
               onChange={(event) => setTerm(event.target.value)}
               onFocus={() => setOpen(trimmedTerm.length > 0)}
               placeholder="Cidade, bairro ou região"
-              className="theme-input w-full rounded-xl border-none bg-[var(--color-surface)] px-3.5 py-2.5 pl-11 text-sm text-[var(--color-primary-strong)] shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition placeholder:opacity-80 sm:px-4 sm:py-3 sm:pl-12 sm:text-base lg:py-3.5"
+              className="theme-input w-full rounded-xl border-none bg-surface px-3.5 py-2.5 pl-11 text-sm text-primaryStrong shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition placeholder:opacity-80 sm:px-4 sm:py-3 sm:pl-12 sm:text-base lg:py-3.5"
             />
             {loading && (
-              <div className="absolute inset-y-0 right-3 flex items-center text-xs font-medium text-[var(--color-primary)]">
+              <div className="absolute inset-y-0 right-3 flex items-center text-xs font-medium text-primary">
                 buscando...
               </div>
             )}
 
             {open && (
-              <ul className="absolute left-0 right-0 top-[110%] z-30 max-h-64 overflow-y-auto rounded-xl border-none bg-[var(--color-surface)] shadow-xl shadow-emerald-900/10 sm:max-h-72 lg:max-h-80">
+              <ul className="absolute left-0 right-0 top-[110%] z-30 max-h-64 overflow-y-auto rounded-xl border-none bg-surface shadow-xl shadow-emerald-900/10 sm:max-h-72 lg:max-h-80">
                 {results.length === 0 && !loading && (
                   <li className="px-4 py-3 text-sm text-muted">
                     Nada encontrado
@@ -104,9 +104,9 @@ export default function Search() {
                         resetLocationSearchAction();
                         setOpen(false);
                       }}
-                      className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-[var(--color-highlight)] active:bg-[var(--color-accent)]"
+                      className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:hover:bg-highlight active:bg-accent"
                     >
-                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)] text-[var(--color-primary-strong)]">
+                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-primaryStrong">
                         <svg
                           aria-hidden="true"
                           className="h-4 w-4"
@@ -123,7 +123,7 @@ export default function Search() {
                           <circle cx="12" cy="11" r="2" />
                         </svg>
                       </span>
-                      <span className="flex-1 text-sm font-medium text-[var(--color-text)]">
+                      <span className="flex-1 text-sm font-medium text-text">
                         {item.name}
                       </span>
                     </button>

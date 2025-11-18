@@ -15,15 +15,15 @@ export function MyDatePicker() {
   return (
     <div className=" items-start w-full flex flex-col justify-start h-full">
       <div className="flex items-center gap-2 mb-4">
-        <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-[var(--color-accent)] text-[var(--color-primaryStrong)] shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10">
+        <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-accent text-primaryStrong shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10">
           <Clock className="h-5 w-5" />
         </span>
 
         <div>
-          <h2 className="truncate text-sm font-semibold text-[var(--color-primaryStrong)] sm:text-base sm:max-w-[490px] max-w-[260px]">
+          <h2 className="truncate text-sm font-semibold text-primaryStrong sm:text-base sm:max-w-[490px] max-w-[260px]">
             Dia e hora
           </h2>
-          <p className="text-[12px] font-medium text-[var(--color-muted)] sm:text-[13px]">
+          <p className="text-[12px] font-medium text-muted sm:text-[13px]">
             Selecione o dia e a hora que pretende pescar!
           </p>
         </div>
@@ -33,7 +33,7 @@ export function MyDatePicker() {
           animate
           locale={ptBR}
           navLayout="around"
-          className="truncate text-sm font-semibold text-[var(--color-primaryStrong)] sm:text-base"
+          className="truncate text-sm font-semibold text-primaryStrong sm:text-base"
           mode="single"
           selected={selected}
           onSelect={(v) => {

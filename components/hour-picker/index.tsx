@@ -1,6 +1,12 @@
 "use client";
 
 import { planningStore } from "@/core/request";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 
 const hours = Array.from({ length: 24 }, (_, i) => i);
@@ -24,16 +30,18 @@ export function HourPicker() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <span
-        className={
-          "text-xs font-medium text-[var(--color-muted)] sm:text-[13px] mb-2"
-        }
-      >
+    <div className="w-full flex flex-col items-center gap-2">
+      <span className="text-xs font-medium text-primaryStrong sm:text-[13px]">
         Selecione a hora que pretende pescar
       </span>
-      <div className="relative w-full flex flex-row items-center justify-center text-sm font-medium tracking-tight text-slate-800">
-        <span className="text-slate-500 mr-1">{"<"}</span>
+      <div className="relative w-full flex flex-row items-center justify-center text-sm font-medium tracking-tight text-slate-800 px-2 py-1">
+        <span
+          className="text-slate-400 mr-2 cursor-pointer rounded px-2 py-1 transition hover:bg-slate-100 active:scale-95"
+          onClick={() => scroll("left")}
+          aria-hidden
+        >
+          <ChevronsLeft className="h-4 w-4 text-primaryStrong" />
+        </span>
         <div
           ref={scrollRef}
           onWheel={(e) => {
@@ -68,7 +76,7 @@ export function HourPicker() {
             dragRef.current.active = false;
             setIsDragging(false);
           }}
-          className={`hour-scroll overflow-x-auto px-5 py-1 ${
+          className={`hour-scroll relative overflow-x-auto px-4 py-1 ${
             isDragging ? "cursor-grabbing" : "cursor-grab"
           }`}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -84,11 +92,12 @@ export function HourPicker() {
                     setSelectedHour(index);
                     setProperty("targetHour", index.toString());
                   }}
-                  className={`relative select-none text-left tabular-nums transition-colors p-[2px] ${
+                  className={`relative select-none text-left tabular-nums transition-colors ${
                     isSelected
-                      ? "text-slate-900 bg-[var(--color-accent)]/60 rounded  "
-                      : "text-slate-500 hover:text-slate-800"
+                      ? "text-white bg-accent shadow-sm rounded px-3 py-1.5"
+                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded px-3 py-1.5"
                   }`}
+                  aria-pressed={isSelected}
                 >
                   {hour}
                   {isSelected ? (
@@ -99,7 +108,13 @@ export function HourPicker() {
             })}
           </div>
         </div>
-        <span className="text-slate-500 ml-1">{">"}</span>
+        <span
+          className="text-slate-400 ml-2 cursor-pointer rounded-full px-2 py-1 transition hover:bg-slate-100 active:scale-95"
+          onClick={() => scroll("right")}
+          aria-hidden
+        >
+          <ChevronsRight className="h-4 w-4 text-primaryStrong" />
+        </span>
       </div>
       <style jsx>{`
         .hour-scroll::-webkit-scrollbar {

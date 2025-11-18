@@ -12,7 +12,7 @@ export function LoadingCard({
   className,
 }: LoadingProps) {
   const containerClassName = [
-    "relative w-full overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-xl shadow-emerald-900/10",
+    "relative w-full overflow-hidden rounded-2xl border border-border bg-surface shadow-xl shadow-emerald-900/10",
     "flex flex-col items-center justify-center gap-3 p-3 text-center sm:flex-row sm:gap-4 sm:p-4 sm:text-left",
     fullScreen ? "min-h-[220px]" : "h-auto",
     className,
@@ -34,13 +34,13 @@ export function LoadingCard({
       />
 
       <div className="relative flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-surface-muted)] shadow-inner shadow-emerald-900/10 sm:h-11 sm:w-11">
+        <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-(--color-surface-muted) shadow-inner shadow-emerald-900/10 sm:h-11 sm:w-11">
           <span className="sr-only">{label}</span>
           <div className="h-5 w-5 animate-spin rounded-full border-2 border-[color-mix(in_srgb,var(--color-primary)_75%,transparent)] border-t-transparent" />
           <div className="pointer-events-none absolute -inset-1 rounded-3xl bg-[radial-gradient(circle_at_50%_50%,var(--color-accent)_0,transparent_55%)] opacity-40 blur-md" />
         </div>
 
-        <p className="relative text-sm font-semibold text-[var(--color-primary-strong)] sm:text-base">
+        <p className="relative text-sm font-semibold text-primaryStrong sm:text-base">
           {label}
         </p>
       </div>
@@ -58,7 +58,7 @@ export function LoadingInline({
   className,
 }: InlineLoadingProps) {
   const classes = [
-    "inline-flex items-center gap-2 rounded-lg bg-[var(--color-surface-muted)] px-2.5 py-1.5 text-xs font-medium text-[var(--color-primary-strong)] shadow-inner shadow-emerald-900/10",
+    "inline-flex items-center gap-2 rounded-lg bg-(--color-surface-muted) px-2.5 py-1.5 text-xs font-medium text-primaryStrong shadow-inner shadow-emerald-900/10",
     className,
   ]
     .filter(Boolean)
