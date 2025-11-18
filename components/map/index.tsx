@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import "leaflet.fullscreen/Control.FullScreen.css";
 import "leaflet.fullscreen";
@@ -18,6 +17,7 @@ import {
   searchLocationsByBoundingBoxAction,
 } from "@/core/request";
 import { cn } from "@/lib/utils";
+import { CurrentZoomWatcher } from "./zoom-handler";
 
 const DEFAULT_CENTER: LatLngTuple = [-24.02323, -48.9034806];
 const DEFAULT_ZOOM = 14;
@@ -43,16 +43,17 @@ export default function Map({
   const markLoading = planningStore((state) => state.markLoading);
   const searcLoading = planningStore((state) => state.searcLoading);
   const activeBBox = selected?.boundingBox ?? bbox;
-
+  const baseLayerId = mapStore((state) => state.baseLayerId);
+  const setMapProperty = mapStore((state) => state.setProperty);
+  const lastZoom = mapStore((state) => state.zoom);
   const derivedCenter = useMemo(() => {
     if (activeBBox) return boundingBoxCenter(activeBBox);
     return initialCenter;
   }, [activeBBox, initialCenter]);
 
-  const baseLayerId = mapStore((state) => state.baseLayerId);
-  const setBaseLayerId = mapStore((state) => state.setBaseLayerId);
   const baseLayer = useMemo(
-    () => BASE_LAYERS.find((layer) => layer.id === baseLayerId) ?? BASE_LAYERS[0],
+    () =>
+      BASE_LAYERS.find((layer) => layer.id === baseLayerId) ?? BASE_LAYERS[0],
     [baseLayerId]
   );
   const [baseSelectorOpen, setBaseSelectorOpen] = useState(false);
@@ -100,7 +101,7 @@ export default function Map({
                   <div
                     key={layer.id}
                     onClick={() => {
-                      setBaseLayerId(layer.id);
+                      setMapProperty("baseLayerId", layer.id);
                       setBaseSelectorOpen(false);
                     }}
                     className={cn(
@@ -138,7 +139,7 @@ export default function Map({
         <MapContainer
           center={markerPosition}
           fullscreenControl={true}
-          zoom={zoom}
+          zoom={lastZoom ?? zoom}
           scrollWheelZoom
           zoomControl={false}
           attributionControl={false}
@@ -159,6 +160,7 @@ export default function Map({
             />
           )}
           {syncViewEnabled && <SyncView center={markerPosition} />}
+          <CurrentZoomWatcher onChange={(z) => setMapProperty("zoom", z)} />
         </MapContainer>
       </div>
       <span className="text-sm italic text-muted mb-3 pl-1 px-1">
