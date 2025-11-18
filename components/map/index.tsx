@@ -40,6 +40,8 @@ export default function Map({
   const selected = planningStore((state) => state.selected);
   const syncViewEnabled = planningStore((state) => state.syncViewEnabled);
   const setSyncViewEnabled = planningStore((state) => state.setSyncViewEnabled);
+  const manualPosition = planningStore((state) => state.manualPosition);
+  const setPlanningProperty = planningStore((state) => state.setProperty);
   const markLoading = planningStore((state) => state.markLoading);
   const searcLoading = planningStore((state) => state.searcLoading);
   const activeBBox = selected?.boundingBox ?? bbox;
@@ -57,9 +59,6 @@ export default function Map({
     [baseLayerId]
   );
   const [baseSelectorOpen, setBaseSelectorOpen] = useState(false);
-  const [manualPosition, setManualPosition] = useState<LatLngTuple | null>(
-    null
-  );
 
   const markerPosition = syncViewEnabled
     ? selected?.center ?? derivedCenter
@@ -69,7 +68,7 @@ export default function Map({
     position: LatLngTuple,
     boundsBBox: BoundingBox
   ) {
-    setManualPosition(position);
+    setPlanningProperty("manualPosition", position);
     setSyncViewEnabled(false);
 
     try {
@@ -82,7 +81,7 @@ export default function Map({
     }
     const latestSelection = planningStore.getState().selected;
     if (latestSelection) {
-      setManualPosition(position);
+      setPlanningProperty("manualPosition", position);
     }
   }
 

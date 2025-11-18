@@ -50,8 +50,8 @@ export default function Stepper() {
   }
 
   return (
-    <nav aria-label="Progresso do planejamento" className="w-full ">
-      <ol className="flex w-full flex-wrap items-center gap-2.5 sm:gap-4">
+    <nav aria-label="Progresso do planejamento" className="w-full">
+      <ol className="flex w-full flex-wrap items-center gap-2.5 sm:gap-4 ">
         {steps.map(({ href, icon: Icon }, index) => {
           const active = activeIndex === index;
           const completed = activeIndex > index;
@@ -86,7 +86,7 @@ export default function Stepper() {
           return (
             <li
               key={href}
-              className="flex flex-1 items-center gap-2.5 sm:gap-3"
+              className="flex flex-1 items-center gap-2.5 sm:gap-3 "
             >
               <Link
                 href={href}

@@ -13,6 +13,7 @@ type State = {
   error: string | null;
   selected: LocationSelection | null;
   syncViewEnabled: boolean;
+  manualPosition: LocationSelection["center"] | null;
   hasHydrated: boolean;
 };
 
@@ -26,6 +27,7 @@ const initial: State = {
   error: null,
   selected: null,
   syncViewEnabled: true,
+  manualPosition: null,
   hasHydrated: false,
 };
 
