@@ -15,7 +15,7 @@ export function MyDatePicker() {
   return (
     <div className=" items-start w-full flex flex-col justify-start h-full">
       <div className="flex items-center gap-2 mb-4">
-        <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-accent text-primaryStrong shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10">
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[color-mix(in_srgb,var(--color-highlight)_70%,var(--color-surface)_30%)] text-primaryStrong ring-1 ring-[color-mix(in_srgb,var(--color-primary)_20%,var(--color-border)_80%)] shadow-[0_8px_20px_rgba(0,0,0,0.05)]">
           <Clock className="h-5 w-5" />
         </span>
 
@@ -28,6 +28,7 @@ export function MyDatePicker() {
           </p>
         </div>
       </div>
+
       <div className=" items-center w-full flex flex-col justify-start gap-2 h-full">
         <DayPicker
           animate

@@ -36,19 +36,18 @@ export default function Search() {
 
   return (
     <>
-      <div className="relative mb-4 space-y-3 sm:space-y-4 lg:space-y-5">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <span className="inline-flex h-9 w-9 min-w-9 items-center justify-center rounded-sm bg-accent text-primaryStrong shadow-inner shadow-emerald-900/10 sm:h-10 sm:w-10 lg:h-11 lg:w-11">
+      <div className="relative mb-2 space-y-3 sm:space-y-4 lg:space-y-5">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[color-mix(in_srgb,var(--color-highlight)_70%,var(--color-surface)_30%)] text-primaryStrong ring-1 ring-[color-mix(in_srgb,var(--color-primary)_20%,var(--color-border)_80%)] shadow-[0_8px_20px_rgba(0,0,0,0.05)]">
             <MapPin className="h-5 w-5" />
           </span>
 
           <div>
-            <h2 className="max-w-[260px] truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px] sm:text-base lg:max-w-full">
-              Destino
+            <h2 className="truncate text-sm font-semibold text-primaryStrong sm:text-base sm:max-w-[490px] max-w-[260px]">
+              Localização
             </h2>
             <p className="text-[10px] font-medium text-muted sm:text-[13px]">
-              Busque por cidade, bairro, região ou marque a localização exata no
-              mapa.
+              Busque o local da pescaria, ou navegue pelo mapa.
             </p>
           </div>
         </div>

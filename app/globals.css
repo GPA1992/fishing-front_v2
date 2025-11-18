@@ -2,23 +2,27 @@
 @import "leaflet/dist/leaflet.css";
 
 :root {
-  --background: 200 95% 97%;
+  --background: 135 95% 97%;
   --surface: 0 0% 100%;
-  --surfaceMuted: 198 80% 94%;
-  --border: 198 60% 84%;
-  --text: 210 30% 18%;
+  --surfaceMuted: 135 80% 94%;
+  --border: 135 60% 84%;
+  --text: 200 30% 10%;
+
   --muted: 210 20% 40%;
 
-  --primary: 204 95% 50%;
-  --primaryStrong: 204 98% 40%;
-  --accent: 135 70% 50%;
-  --accentStrong: 135 75% 40%;
-  --highlight: 190 95% 90%;
+  --primary: 210 30% 25%;
 
-  --gradient: 200 95% 97%;
-  --gradient-1: 204 95% 50%;
-  --gradient-2: 135 70% 50%;
+  --primaryStrong: 210 30% 10%;
+
+  --accent: 204 70% 50%;
+  --accentStrong: 204 75% 40%;
+  --highlight: 135 95% 90%;
+
+  --gradient: 135 95% 97%;
+  --gradient-1: 135 95% 50%;
+  --gradient-2: 204 70% 50%;
   --gradient-3: 50 95% 60%;
+
 
 }
 
