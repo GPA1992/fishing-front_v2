@@ -2,18 +2,20 @@ import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { customStorage } from "../../common";
 import { type LocationSearchResult, type LocationSelection } from "../types";
+import { LatLngTuple } from "leaflet";
+import { fishType } from "@/components/fish";
 
 type State = {
   searcLoading: boolean;
   markLoading: boolean;
   targetDate: Date | null;
   targetHour: string | null;
-  selectedFish: string[];
+  selectedFish: fishType[];
   results: LocationSearchResult[];
   error: string | null;
   selected: LocationSelection | null;
   syncViewEnabled: boolean;
-  manualPosition: LocationSelection["center"] | null;
+  manualPosition: LatLngTuple | null;
   hasHydrated: boolean;
 };
 
