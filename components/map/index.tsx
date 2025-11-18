@@ -18,7 +18,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const DEFAULT_CENTER: LatLngTuple = [-24.02323, -48.9034806];
-const DEFAULT_ZOOM = 10;
+const DEFAULT_ZOOM = 14;
 
 ensureDefaultMarkerConfig();
 
