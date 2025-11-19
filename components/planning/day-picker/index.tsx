@@ -14,7 +14,7 @@ export function MyDatePicker() {
 
   return (
     <div className=" items-start w-full flex flex-col justify-start h-full">
-      <p className="text-[12px] font-medium text-muted sm:text-[13px] mb-1">
+      <p className="text-sm font-medium text-muted px-2 sm:text-[13px] mb-2">
         Selecione o dia que pretende pescar!
       </p>
       <div className=" items-center w-full flex flex-col justify-start gap-2 h-full">

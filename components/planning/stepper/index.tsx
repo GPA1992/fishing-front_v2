@@ -40,15 +40,9 @@ export default function Stepper() {
   const pathname = usePathname();
   const currentIndex = steps.findIndex(({ href }) => pathname.startsWith(href));
   const activeIndex = currentIndex === -1 ? 0 : currentIndex;
-  const isLocationIsFilled = planningStore((state) => state.isLocationIsFilled);
-  const isTargetIsFilled = planningStore((state) => state.isTargetIsFilled);
-  const isFishListIsFilled = planningStore((state) => state.isFishListIsFilled);
-
-  const hasHydrated = planningStore((s) => s.hasHydrated);
-
-  if (!hasHydrated) {
-    return null;
-  }
+  const selected = planningStore((state) => state.selected);
+  const targetDate = planningStore((state) => state.targetDate);
+  const selectedFish = planningStore((state) => state.selectedFish);
 
   return (
     <nav aria-label="Progresso do planejamento" className="w-full">
@@ -70,22 +64,24 @@ export default function Stepper() {
             completed ? "bg-accent border-accent" : "bg-surfaceMuted"
           );
 
-          const isStepperIsFilled = (steper: string) => {
+          const isStepperIsFilled = (steper: string): boolean => {
             if (steper === "/planejamento/localizacao") {
-              return isLocationIsFilled();
+              return Boolean(selected);
             }
             if (steper === "/planejamento/dia-horario") {
-              return isTargetIsFilled();
+              return Boolean(targetDate);
             }
 
             if (steper === "/planejamento/peixe") {
-              return isFishListIsFilled();
+              return Boolean(selectedFish && selectedFish.length >= 1);
             }
 
             return false;
           };
 
           const isFilled = isStepperIsFilled(href);
+          console.log(href, isFilled);
+
           const shouldShowMissing = !isFilled && completed;
 
           return (

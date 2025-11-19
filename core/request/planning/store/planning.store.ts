@@ -3,7 +3,7 @@ import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { customStorage } from "../../common";
 import { type LocationSearchResult, type LocationSelection } from "../types";
 import { LatLngTuple } from "leaflet";
-import { fishType } from "@/components/fish";
+import { fishType } from "@/components/planning/fish";
 
 type State = {
   searcLoading: boolean;
@@ -78,7 +78,7 @@ export const planningStore = create<State & Actions>()(
         },
         isFishListIsFilled: () => {
           const { selectedFish } = get();
-          return Boolean(selectedFish && selectedFish.length === 3);
+          return Boolean(selectedFish && selectedFish.length >= 1);
         },
         setHasHydrated: (value) =>
           set((state) => ({ ...state, hasHydrated: value })),

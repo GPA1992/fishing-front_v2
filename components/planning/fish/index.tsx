@@ -6,6 +6,7 @@ import { FishIcon } from "lucide-react";
 import { fishingList } from "./data";
 import { cn } from "@/lib/utils";
 import { useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const MAX_SELECTION = 3;
 const normalizeText = (value: string) =>
@@ -89,7 +90,7 @@ export function Fish() {
             </svg>
           </span>
         </div>
-        <div className="flex items-center justify-start gap-3 rounded-xl mt-2">
+        <div className="flex items-center justify-start gap-3 rounded-xl mt-2 pl-2">
           <button
             type="button"
             onClick={clearSelection}
@@ -104,7 +105,7 @@ export function Fish() {
       <div
         className={cn(
           "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 rounded auto-rows-max",
-          "pt-2 h-[30vh] px-0 overflow-y-auto scroll-smooth pb-2 pr-2 fish-scroll"
+          "pt-2 h-[33vh] sm:h-[38vh] px-0 overflow-y-auto scroll-smooth pb-2 px-2 fish-scroll"
         )}
       >
         {filteredFish.length === 0 && (
@@ -181,14 +182,17 @@ export function Fish() {
           );
         })}
       </div>
-      <button
-        type="button"
-        className={`group relative isolate overflow-hidden rounded-2xl text-left transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primaryStrong 
-        
+      <div className=" h-[8vh] flex flex-row items-center justify-center">
+        <Button
+          className={`bg-accentStrong relative isolate overflow-hidden rounded-2xl text-left transition 
+              duration-200 hover:-translate-y-0.5
+             focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
+             focus-visible:outline-primaryStrong  text-white w-[50%] py-6
           }`}
-      >
-        Finaliaar
-      </button>
+        >
+          Iniciar analise
+        </Button>
+      </div>
       <style jsx>{`
         .fish-scroll {
           scrollbar-width: thin;
