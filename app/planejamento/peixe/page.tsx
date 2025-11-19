@@ -1,6 +1,6 @@
 "use client";
 
-import { Fish } from "@/components/fish";
+import { Fish } from "@/components/planning/fish";
 
 export default function Page() {
   return (

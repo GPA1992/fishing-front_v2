@@ -1,0 +1,83 @@
+"use client";
+
+import { planningStore } from "@/core/request";
+
+import { CalendarCheck, Fish, FishOff, Pin } from "lucide-react";
+
+export default function PlanningData() {
+  const selected = planningStore((state) => state.selected);
+
+  const targetDate = planningStore((state) => state.targetDate);
+  const targetHour = planningStore((state) => state.targetHour);
+  const selectedFish = planningStore((state) => state.selectedFish);
+
+  const dateLabel = targetDate
+    ? new Date(targetDate).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
+    : null;
+
+  return (
+    <section className="relative z-20 h-full w-full overflow-hidden rounded-2xl bg-surface ">
+      <div className="relative flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5 lg:gap-4 lg:p-6">
+        <div className="flex flex-col min-w-0 items-start gap-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-(--color-primary-strong) opacity-80">
+            Planejamento
+          </p>
+          <div className="min-h-16 min-w-0 space-y-2">
+            <div className="flex flex-row gap-2 items-center">
+              <Pin className="h-4 w-4 text-accentStrong" />
+              <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
+                {selected?.address?.city &&
+                  selected.locationName &&
+                  `${selected.address.city}, ${selected.locationName}`}
+
+                {selected && !selected.locationName && `${selected?.name}`}
+              </h2>
+              {!selected && (
+                <p className="text-xs font-medium text-muted sm:text-[13px]">
+                  Toque no mapa para definir o local.
+                </p>
+              )}
+            </div>
+            <div className="flex flex-row gap-2 items-center">
+              <CalendarCheck className="h-4 w-4 text-accentStrong" />
+              {targetDate && (
+                <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
+                  Data · {dateLabel}
+                </h2>
+              )}
+              {!selected && (
+                <p className="text-xs font-medium text-muted sm:text-[13px]">
+                  Defina a data da pesca.
+                </p>
+              )}
+            </div>
+            <div className="flex flex-row gap-2 items-center">
+              <Fish className="h-4 w-4 text-accentStrong" />
+              {selectedFish && (
+                <div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
+                  {selectedFish.map((p, i) => (
+                    <h2
+                      key={i}
+                      className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none"
+                    >
+                      {p.name} |
+                    </h2>
+                  ))}
+                </div>
+              )}
+              {!selected && (
+                <p className="text-xs font-medium text-muted sm:text-[13px]">
+                  Defina a data da pesca.
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

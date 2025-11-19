@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { planningStore } from "@/core/request";
-import { FishIcon, X } from "lucide-react";
+import { FishIcon } from "lucide-react";
 import { fishingList } from "./data";
 import { cn } from "@/lib/utils";
 import { useMemo, useState } from "react";
@@ -58,22 +58,10 @@ export function Fish() {
 
   return (
     <section className="flex flex-col gap-4 sm:gap-6 lg:gap-7 pb-2">
-      <div className="flex items-center gap-2">
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[color-mix(in_srgb,var(--color-highlight)_70%,var(--color-surface)_30%)] text-primaryStrong ring-1 ring-[color-mix(in_srgb,var(--color-primary)_20%,var(--color-border)_80%)] shadow-[0_8px_20px_rgba(0,0,0,0.05)]">
-          <FishIcon className="h-5 w-5" />
-        </span>
-
-        <div>
-          <h2 className="truncate text-sm font-semibold text-primaryStrong sm:text-base sm:max-w-[490px] max-w-[260px]">
-            Selecione até 3 espécies
-          </h2>
-          <p className="text-[11px] font-medium text-muted sm:text-[13px]">
-            Selecione 3 espécies para fazer a consulta
-          </p>
-        </div>
-      </div>
-
       <div className="w-full sm:w-auto sm:min-w-full px-1 ">
+        <p className="text-[11px] font-medium text-muted sm:text-[13px] mb-1 pl-1">
+          Selecione 3 espécies para fazer a consulta
+        </p>
         <label htmlFor="fish-search" className="sr-only">
           Pesquisar peixes
         </label>
@@ -83,7 +71,7 @@ export function Fish() {
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Pesquisar espécie"
-            className="w-full rounded-xl border-none bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-highlight)_8%)] px-3 py-2 text-sm text-primaryStrong shadow-[0_8px_20px_rgba(0,0,0,0.04)] ring-1 ring-[color-mix(in_srgb,var(--color-primary)_15%,var(--color-border)_85%)] placeholder:text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primaryStrong"
+            className="w-full rounded-xl h-10 border-none bg-[color-mix(in_srgb,var(--color-surface)_92%,var(--color-highlight)_8%)] px-3 py-2 text-sm text-primaryStrong shadow-[0_8px_20px_rgba(0,0,0,0.04)] ring-1 ring-[color-mix(in_srgb,var(--color-primary)_15%,var(--color-border)_85%)] placeholder:text-muted focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-primaryStrong"
           />
           <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-primary opacity-80">
             <svg
@@ -102,23 +90,6 @@ export function Fish() {
           </span>
         </div>
         <div className="flex items-center justify-start gap-3 rounded-xl mt-2">
-          <div className="flex min-w-0 items-center gap-1.5 overflow-hidden">
-            {selectedFish.length ? (
-              selectedFish.map((p, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center gap-1 rounded-full bg-[color-mix(in_srgb,var(--color-highlight)_68%,var(--color-surface)_32%)] px-2 py-1 text-[11px] font-semibold text-primaryStrong ring-1 ring-[color-mix(in_srgb,var(--color-primary)_18%,var(--color-border)_82%)] shadow-[0_8px_16px_rgba(0,0,0,0.04)]"
-                >
-                  {p.name}
-                </span>
-              ))
-            ) : (
-              <span className="truncate text-[11px] font-medium text-muted">
-                Nenhuma espécie selecionada
-              </span>
-            )}
-          </div>
-
           <button
             type="button"
             onClick={clearSelection}

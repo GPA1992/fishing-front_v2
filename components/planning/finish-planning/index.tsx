@@ -1,6 +1,6 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
-import { Button } from "../ui/button";
 
 export default function FinishButton() {
   return (

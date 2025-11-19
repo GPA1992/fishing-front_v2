@@ -6,7 +6,7 @@ import {
   searchLocationsAction,
   setSelectedLocationAction,
 } from "@/core/request";
-import { MapPin } from "lucide-react";
+
 import { useEffect, useState } from "react";
 
 export default function Search() {
@@ -37,22 +37,10 @@ export default function Search() {
   return (
     <>
       <div className="relative mb-2 space-y-3 sm:space-y-4 lg:space-y-5">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[color-mix(in_srgb,var(--color-highlight)_70%,var(--color-surface)_30%)] text-primaryStrong ring-1 ring-[color-mix(in_srgb,var(--color-primary)_20%,var(--color-border)_80%)] shadow-[0_8px_20px_rgba(0,0,0,0.05)]">
-            <MapPin className="h-5 w-5" />
-          </span>
-
-          <div>
-            <h2 className="truncate text-sm font-semibold text-primaryStrong sm:text-base sm:max-w-[490px] max-w-[260px]">
-              Localização
-            </h2>
-            <p className="text-[10px] font-medium text-muted sm:text-[13px]">
-              Busque o local da pescaria, ou navegue pelo mapa.
-            </p>
-          </div>
-        </div>
-
         <div className="relative w-full">
+          <p className="text-[10px] font-medium text-muted sm:text-[13px] mb-1 pl-1">
+            Busque o local da pescaria, ou navegue pelo mapa!
+          </p>
           <label htmlFor="search-location" className="sr-only">
             Buscar
           </label>
@@ -78,7 +66,7 @@ export default function Search() {
               onChange={(event) => setTerm(event.target.value)}
               onFocus={() => setOpen(trimmedTerm.length > 0)}
               placeholder="Cidade, bairro ou região"
-              className="theme-input w-full rounded-xl border-none bg-surface px-3.5 py-2.5 pl-11 text-sm text-primaryStrong shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition placeholder:opacity-80 sm:px-4 sm:py-3 sm:pl-12 sm:text-base lg:py-3.5"
+              className="h-10 w-full rounded-xl border-none bg-surface px-3.5 py-2.5 pl-11 text-sm text-primaryStrong shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition placeholder:opacity-80 sm:px-4 sm:py-3 sm:pl-12 sm:text-base lg:py-3.5"
             />
             {loading && (
               <div className="absolute inset-y-0 right-3 flex items-center text-xs font-medium text-primary">
@@ -103,7 +91,7 @@ export default function Search() {
                         resetLocationSearchAction();
                         setOpen(false);
                       }}
-                      className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:hover:bg-highlight active:bg-accent"
+                      className="flex w-full items-center gap-3 h-12 px-4 py-3 text-left transition hover:hover:bg-highlight active:bg-accent"
                     >
                       <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-primaryStrong">
                         <svg
