@@ -61,7 +61,7 @@ export function Fish() {
     <section className="flex flex-col gap-4 sm:gap-6 lg:gap-7 pb-2">
       <div className="w-full sm:w-auto sm:min-w-full px-1 ">
         <p className="text-[11px] font-medium text-muted sm:text-[13px] mb-1 pl-1">
-          Selecione 3 espécies para fazer a consulta
+          Selecione entre 1 e 3 espécies para fazer a consulta
         </p>
         <label htmlFor="fish-search" className="sr-only">
           Pesquisar peixes
