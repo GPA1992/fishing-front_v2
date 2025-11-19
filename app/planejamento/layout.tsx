@@ -1,5 +1,4 @@
 import PlanningData from "@/components/planning/planning-data";
-import { PlaningHeader } from "@/components/planning/planning-header";
 import Stepper from "@/components/planning/stepper";
 
 import type { ReactNode } from "react";

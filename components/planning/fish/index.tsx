@@ -104,7 +104,7 @@ export function Fish() {
       <div
         className={cn(
           "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 rounded auto-rows-max",
-          "pt-2 h-[30vh] px-0 overflow-y-auto scroll-smooth pb-2 fish-scroll"
+          "pt-2 h-[30vh] px-0 overflow-y-auto scroll-smooth pb-2 pr-2 fish-scroll"
         )}
       >
         {filteredFish.length === 0 && (
