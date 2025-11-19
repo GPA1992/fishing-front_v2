@@ -10,7 +10,7 @@ type State = {
   markLoading: boolean;
   targetDate: Date | null;
   targetHour: string | null;
-  selectedFish: fishType[];
+  selectedFish: fishType[] | null;
   results: LocationSearchResult[];
   error: string | null;
   selected: LocationSelection | null;
@@ -41,6 +41,7 @@ type Actions = {
   setSyncViewEnabled: (value: boolean) => void;
   isTargetIsFilled: () => boolean;
   isLocationIsFilled: () => boolean;
+  isFishListIsFilled: () => boolean;
   setHasHydrated: (value: boolean) => void;
 };
 
@@ -68,12 +69,16 @@ export const planningStore = create<State & Actions>()(
         resetSelection: () =>
           set((state) => ({ ...state, selected: null, selectedFish: [] })),
         isTargetIsFilled: () => {
-          const { targetDate, targetHour } = get();
+          const { targetDate } = get();
           return Boolean(targetDate);
         },
         isLocationIsFilled: () => {
           const { selected } = get();
           return Boolean(selected);
+        },
+        isFishListIsFilled: () => {
+          const { selectedFish } = get();
+          return Boolean(selectedFish && selectedFish.length === 3);
         },
         setHasHydrated: (value) =>
           set((state) => ({ ...state, hasHydrated: value })),

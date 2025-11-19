@@ -42,6 +42,7 @@ export default function Stepper() {
   const activeIndex = currentIndex === -1 ? 0 : currentIndex;
   const isLocationIsFilled = planningStore((state) => state.isLocationIsFilled);
   const isTargetIsFilled = planningStore((state) => state.isTargetIsFilled);
+  const isFishListIsFilled = planningStore((state) => state.isFishListIsFilled);
 
   const hasHydrated = planningStore((s) => s.hasHydrated);
 
@@ -61,7 +62,7 @@ export default function Stepper() {
               "border-accent bg-surface text-primary-Strong shadow-inner shadow-emerald-900/15",
             completed &&
               !active &&
-              "border-green-200 bg-accent/60 text-primary-Strong",
+              "border-green-200 bg-accent/60 text-surface",
             !completed && !active && "border-border bg-surfaceMuted text-muted"
           );
           const lineClasses = cn(
@@ -75,6 +76,10 @@ export default function Stepper() {
             }
             if (steper === "/planejamento/dia-horario") {
               return isTargetIsFilled();
+            }
+
+            if (steper === "/planejamento/peixe") {
+              return isFishListIsFilled();
             }
 
             return false;
@@ -98,7 +103,7 @@ export default function Stepper() {
               >
                 <span className={cn(circleClasses, "relative")}>
                   <Icon
-                    className={cn("h-5 w-5", active && "text-accent")}
+                    className={cn("h-6 w-6", active && "text-accent")}
                     strokeWidth={2.4}
                   />
 
