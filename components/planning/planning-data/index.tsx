@@ -27,37 +27,6 @@ export default function PlanningData() {
             Planejamento
           </p>
           <div className="min-h-16 min-w-0 space-y-2">
-            {/*      <div className="flex flex-row gap-2 items-center">
-              <div className="flex flex-row gap-2 items-center">
-                <Pin className="h-4 w-4 text-accentStrong" />
-                <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
-                  {selected?.address?.city &&
-                    selected.locationName &&
-                    `${selected.address.city}, ${selected.locationName}`}
-
-                  {selected && !selected.locationName && `${selected?.name}`}
-                </h2>
-                {!selected && (
-                  <p className="text-xs font-medium text-muted sm:text-[13px]">
-                    Toque no mapa para definir o local.
-                  </p>
-                )}
-              </div>
-              |
-              <div className="flex flex-row gap-2 items-center">
-                <CalendarCheck className="h-4 w-4 text-accentStrong" />
-                {targetDate && (
-                  <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
-                    Data · {dateLabel}
-                  </h2>
-                )}
-                {!selected && (
-                  <p className="text-xs font-medium text-muted sm:text-[13px]">
-                    Defina a data da pesca.
-                  </p>
-                )}
-              </div>
-            </div> */}
             <div className="flex flex-row gap-2 items-center">
               <Pin className="h-4 w-4 text-accentStrong" />
               <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
@@ -76,11 +45,9 @@ export default function PlanningData() {
 
             <div className="flex flex-row gap-2 items-center">
               <CalendarCheck className="h-4 w-4 text-accentStrong" />
-              {targetDate && (
-                <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
-                  Data · {dateLabel}
-                </h2>
-              )}
+              <h2 className="max-w-[260px]  truncate text-sm font-semibold text-primaryStrong sm:max-w-[490px]  lg:max-w-none">
+                {targetDate && <>Data · {dateLabel}</>}
+              </h2>
               {!selected && (
                 <p className="text-xs font-medium text-muted sm:text-[13px]">
                   Defina a data da pesca.
@@ -122,7 +89,7 @@ export default function PlanningData() {
               )}
               {!selected && (
                 <p className="text-xs font-medium text-muted sm:text-[13px]">
-                  Defina a data da pesca.
+                  Escolha pelo menos um peixe
                 </p>
               )}
             </div>

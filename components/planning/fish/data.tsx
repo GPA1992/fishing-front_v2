@@ -42,6 +42,18 @@ export const fishingList: FishOption[] = [
     slug: "robalo",
     image: "robalo.png",
   },
+  {
+    id: "6831600b-15a0-4693-8158-b3f822f85f56",
+    name: "Pacu",
+    slug: "pacu",
+    image: "pacu.png",
+  },
+  {
+    id: "722996cf-c6e4-4fc5-af37-878f97f74da1",
+    name: "Tambaqui",
+    slug: "tambaqui",
+    image: "tambaqui.png",
+  },
   /* 
 
 

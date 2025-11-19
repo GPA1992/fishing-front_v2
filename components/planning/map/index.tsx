@@ -142,7 +142,7 @@ export default function Map({
           scrollWheelZoom
           zoomControl={false}
           attributionControl={false}
-          className={"w-full h-[40vh]"}
+          className={"w-full h-[35vh]"}
         >
           <TileLayer
             key={baseLayer.id}

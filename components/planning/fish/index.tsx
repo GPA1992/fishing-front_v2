@@ -135,7 +135,7 @@ export function Fish() {
                     alt={fish.name}
                     fill
                     sizes="100vw"
-                    className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                    className="p-2 object-cover transition duration-300 group-hover:scale-[1.02]"
                     priority
                   />
 
@@ -181,17 +181,6 @@ export function Fish() {
             </button>
           );
         })}
-      </div>
-      <div className=" h-[8vh] flex flex-row items-center justify-center">
-        <Button
-          className={`bg-accentStrong relative isolate overflow-hidden rounded-2xl text-left transition 
-              duration-200 hover:-translate-y-0.5
-             focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
-             focus-visible:outline-primaryStrong  text-white w-[50%] py-6
-          }`}
-        >
-          Iniciar analise
-        </Button>
       </div>
       <style jsx>{`
         .fish-scroll {
