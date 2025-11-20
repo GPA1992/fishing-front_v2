@@ -1,4 +1,4 @@
-import FinishButton from "@/components/planning/finish-button";
+import { FinishButton } from "@/components/planning/finish-button";
 import PlanningData from "@/components/planning/planning-data";
 import Stepper from "@/components/planning/stepper";
 

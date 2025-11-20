@@ -21,4 +21,4 @@ export const BASE_LAYERS = [
 ] as const;
 
 export type BaseLayer = (typeof BASE_LAYERS)[number];
-export const DEFAULT_BASE_LAYER_ID = BASE_LAYERS[0].id;
+export const DEFAULT_BASE_LAYER_ID = BASE_LAYERS[1].id;

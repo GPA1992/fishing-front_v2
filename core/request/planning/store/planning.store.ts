@@ -88,7 +88,6 @@ export const planningStore = create<State & Actions>()(
         storage: createJSONStorage(() => customStorage),
         onRehydrateStorage: () => (state, error) => {
           if (error) return;
-          // chama a action da própria store
           state?.setHasHydrated(true);
         },
       }
