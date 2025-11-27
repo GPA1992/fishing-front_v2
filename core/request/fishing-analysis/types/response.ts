@@ -26,6 +26,7 @@ export interface Score {
   moonBonus: number;
   solunarBonus: number;
   moonPhaseBonus: number;
+  hourBonus: number;
 }
 
 export interface Breakdown {

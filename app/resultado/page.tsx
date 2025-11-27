@@ -22,6 +22,7 @@ type HourlyEntry = {
   probability: number;
   moonPhase: string;
   score: {
+    hourBonus: number;
     hourlyScore: number;
     breakdown: {
       temperature: number;
@@ -90,8 +91,10 @@ export default function FishAnalysis() {
     );
 
     const average =
-      selectedFish.hourly.reduce((acc, item) => acc + item.score.hourlyScore, 0) /
-      selectedFish.hourly.length;
+      selectedFish.hourly.reduce(
+        (acc, item) => acc + item.score.hourlyScore,
+        0
+      ) / selectedFish.hourly.length;
 
     const comfortTemperature =
       selectedFish.hourly.reduce((acc, item) => acc + item.temperature, 0) /
@@ -114,7 +117,8 @@ export default function FishAnalysis() {
               Nenhuma análise disponível ainda.
             </p>
             <p className="mt-2 text-sm text-muted">
-              Volte à etapa de planejamento para selecionar um peixe e gerar as notas do dia.
+              Volte à etapa de planejamento para selecionar um peixe e gerar as
+              notas do dia.
             </p>
           </div>
         </div>
@@ -134,13 +138,16 @@ export default function FishAnalysis() {
                 Janela ideal para o seu peixe hoje
               </h1>
               <p className="text-sm text-muted sm:text-base">
-                Visualize as notas de cada hora, acompanhe a curva de performance do dia e mergulhe na composição do score.
+                Visualize as notas de cada hora, acompanhe a curva de
+                performance do dia e mergulhe na composição do score.
               </p>
             </div>
             <div className="flex items-center gap-3 rounded-2xl border border-emerald-100 bg-white/90 px-4 py-3 shadow-inner shadow-emerald-900/5">
               <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-300 to-cyan-300 opacity-90 shadow-lg shadow-emerald-900/20" />
               <div>
-                <p className="text-xs uppercase tracking-wide text-muted">Peixe selecionado</p>
+                <p className="text-xs uppercase tracking-wide text-muted">
+                  Peixe selecionado
+                </p>
                 <p className="text-lg font-semibold capitalize text-primaryStrong">
                   {activeFishKey}
                 </p>
@@ -164,7 +171,9 @@ export default function FishAnalysis() {
                 {fishEntries.map(([key, value]) => {
                   const bestScore =
                     value.hourly.length > 0
-                      ? Math.max(...value.hourly.map((h) => h.score.hourlyScore))
+                      ? Math.max(
+                          ...value.hourly.map((h) => h.score.hourlyScore)
+                        )
                       : null;
 
                   const isSelected = key === activeFishKey;
@@ -224,12 +233,16 @@ export default function FishAnalysis() {
                     <StatPill
                       title="Melhor janela"
                       value={formatHour(stats.highest.time)}
-                      description={`Score ${stats.highest.score.hourlyScore.toFixed(1)}`}
+                      description={`Score ${stats.highest.score.hourlyScore.toFixed(
+                        1
+                      )}`}
                     />
                     <StatPill
                       title="Pior janela"
                       value={formatHour(stats.lowest.time)}
-                      description={`Mínimo ${stats.lowest.score.hourlyScore.toFixed(1)}`}
+                      description={`Mínimo ${stats.lowest.score.hourlyScore.toFixed(
+                        1
+                      )}`}
                     />
                     <StatPill
                       title="Temperatura média"
@@ -258,14 +271,34 @@ export default function FishAnalysis() {
 
                   <div className="mt-4 h-[260px] w-full sm:h-[360px]">
                     <ResponsiveContainer width="100%" height="100%">
-                      <AreaChart data={chartData} margin={{ left: -12, right: 12 }}>
+                      <AreaChart
+                        data={chartData}
+                        margin={{ left: -12, right: 12 }}
+                      >
                         <defs>
-                          <linearGradient id="scoreGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity={0.25} />
-                            <stop offset="100%" stopColor="hsl(var(--accent))" stopOpacity={0.05} />
+                          <linearGradient
+                            id="scoreGradient"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="0%"
+                              stopColor="hsl(var(--accent))"
+                              stopOpacity={0.25}
+                            />
+                            <stop
+                              offset="100%"
+                              stopColor="hsl(var(--accent))"
+                              stopOpacity={0.05}
+                            />
                           </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="4 6" stroke="hsl(var(--border))" />
+                        <CartesianGrid
+                          strokeDasharray="4 6"
+                          stroke="hsl(var(--border))"
+                        />
                         <XAxis
                           dataKey="timeLabel"
                           tickLine={false}
@@ -288,7 +321,8 @@ export default function FishAnalysis() {
                         )}
                         <Tooltip
                           content={({ active, payload }) => {
-                            if (!active || !payload || payload.length === 0) return null;
+                            if (!active || !payload || payload.length === 0)
+                              return null;
                             const item = payload[0].payload;
                             return (
                               <div className="rounded-xl border border-border bg-white/95 px-3 py-2 shadow-lg shadow-emerald-900/10">
@@ -299,7 +333,9 @@ export default function FishAnalysis() {
                                   Score {item.score.toFixed(1)}
                                 </p>
                                 <p className="text-[11px] text-muted">
-                                  Temp {item.temperature.toFixed(1)}° · Vento {item.windSpeed.toFixed(1)}km/h · Chuva {item.probability.toFixed(0)}%
+                                  Temp {item.temperature.toFixed(1)}° · Vento{" "}
+                                  {item.windSpeed.toFixed(1)}km/h · Chuva{" "}
+                                  {item.probability.toFixed(0)}%
                                 </p>
                               </div>
                             );
@@ -311,14 +347,18 @@ export default function FishAnalysis() {
                           stroke="hsl(var(--accent))"
                           strokeWidth={3}
                           fill="url(#scoreGradient)"
-                          activeDot={{ r: 5, strokeWidth: 2, stroke: "hsl(var(--accent))" }}
+                          activeDot={{
+                            r: 5,
+                            strokeWidth: 2,
+                            stroke: "hsl(var(--accent))",
+                          }}
                         />
                       </AreaChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
 
-                <div className="grid gap-4 lg:grid-cols-3">
+                <div className="grid gap-4 lg:grid-cols-1 border ">
                   <div className="rounded-2xl bg-white/90 p-4 shadow-lg shadow-emerald-900/8 backdrop-blur lg:col-span-2">
                     <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <h3 className="text-base font-semibold text-primaryStrong sm:text-lg">
@@ -337,7 +377,9 @@ export default function FishAnalysis() {
                             className="rounded-xl border border-border/70 bg-white/80 px-3 py-3 shadow-sm"
                           >
                             <div className="flex items-center justify-between">
-                              <div className="text-sm font-semibold text-primaryStrong">{timeStr}</div>
+                              <div className="text-sm font-semibold text-primaryStrong">
+                                {timeStr}
+                              </div>
                               <span className="rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-primary">
                                 Score {h.score.hourlyScore.toFixed(1)}
                               </span>
@@ -384,7 +426,7 @@ export default function FishAnalysis() {
                         );
                       })}
                     </div>
-                    <div className="hidden max-h-[420px] overflow-auto rounded-xl border border-border/70 sm:block">
+                    <div className="border-border-70 max-h-[420px] overflow-auto rounded-xl border w-full ">
                       <table className="min-w-full text-left text-sm">
                         <thead className="sticky top-0 bg-surfaceMuted text-[11px] uppercase tracking-wide text-muted">
                           <tr>
@@ -396,6 +438,9 @@ export default function FishAnalysis() {
                             <th className="px-4 py-2">Vento</th>
                             <th className="px-4 py-2">Chuva</th>
                             <th className="px-4 py-2">Lua</th>
+                            <th className="px-4 py-2">Sololunar Bonus</th>
+                            <th className="px-4 py-2">Bonus da Fase da Lua</th>
+                            <th className="px-4 py-2">Bonus da Hora</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -404,7 +449,11 @@ export default function FishAnalysis() {
                             return (
                               <tr
                                 key={`${h.time}-${idx}`}
-                                className={idx % 2 === 0 ? "bg-white/70" : "bg-surfaceMuted/80"}
+                                className={
+                                  idx % 2 === 0
+                                    ? "bg-white/70"
+                                    : "bg-surfaceMuted/80"
+                                }
                               >
                                 <td className="whitespace-nowrap px-4 py-2 text-xs text-primaryStrong">
                                   {timeStr}
@@ -415,7 +464,9 @@ export default function FishAnalysis() {
                                 <td className="px-4 py-2 text-xs text-muted">
                                   {h.temperature.toFixed(1)}°C
                                 </td>
-                                <td className="px-4 py-2 text-xs text-muted">{h.humidity.toFixed(0)}%</td>
+                                <td className="px-4 py-2 text-xs text-muted">
+                                  {h.humidity.toFixed(0)}%
+                                </td>
                                 <td className="px-4 py-2 text-xs text-muted">
                                   {h.pressure.toFixed(1)}
                                 </td>
@@ -425,54 +476,25 @@ export default function FishAnalysis() {
                                 <td className="px-4 py-2 text-xs text-muted">
                                   {h.probability.toFixed(0)}%
                                 </td>
-                                <td className="px-4 py-2 text-xs text-muted">{h.moonPhase}</td>
+                                <td className="px-4 py-2 text-xs text-muted">
+                                  {h.moonPhase}
+                                </td>
+
+                                <td className="px-4 py-2 text-xs text-muted">
+                                  {h.score.solunarBonus.toFixed(0)}
+                                </td>
+                                <td className="px-4 py-2 text-xs text-muted">
+                                  {h.score.moonPhaseBonus.toFixed(0)}
+                                </td>
+                                <td className="px-4 py-2 text-xs text-muted">
+                                  {h.score.hourBonus.toFixed(0)}
+                                </td>
                               </tr>
                             );
                           })}
                         </tbody>
                       </table>
                     </div>
-                  </div>
-
-                  <div className="rounded-2xl bg-white/90 p-4 shadow-lg shadow-emerald-900/8 backdrop-blur">
-                    <h3 className="text-base font-semibold text-primaryStrong sm:text-lg">
-                      O que compõe o score
-                    </h3>
-                    <p className="mt-1 text-sm text-muted">
-                      Destaques da primeira hora analisada. Use como referência dos pesos.
-                    </p>
-                    {(() => {
-                      const first = selectedFish.hourly[0];
-                      const { breakdown } = first.score;
-                      const factors = [
-                        { label: "Temperatura", value: breakdown.temperature },
-                        { label: "Umidade", value: breakdown.humidity },
-                        { label: "Pressão", value: breakdown.pressure },
-                        { label: "Vento", value: breakdown.wind },
-                        { label: "Chuva", value: breakdown.rain },
-                        { label: "Bônus lua", value: first.score.moonBonus },
-                        { label: "Solunar", value: first.score.solunarBonus },
-                        { label: "Fase da lua", value: first.score.moonPhaseBonus },
-                      ];
-
-                      return (
-                        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-2">
-                          {factors.map(({ label, value }) => (
-                            <div
-                              key={label}
-                              className="rounded-xl border border-border/70 bg-surfaceMuted/60 px-3 py-2"
-                            >
-                              <p className="text-[11px] uppercase tracking-wide text-muted">
-                                {label}
-                              </p>
-                              <p className="text-sm font-semibold text-primaryStrong">
-                                {value.toFixed(2)}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })()}
                   </div>
                 </div>
               </>
@@ -498,7 +520,9 @@ function StatPill({ title, value, description }: StatPillProps) {
   return (
     <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-white/90 px-4 py-3 shadow-inner shadow-emerald-900/5">
       <div>
-        <p className="text-[11px] uppercase tracking-wide text-muted">{title}</p>
+        <p className="text-[11px] uppercase tracking-wide text-muted">
+          {title}
+        </p>
         <p className="text-lg font-semibold text-primaryStrong">{value}</p>
       </div>
       <span className="text-xs text-muted">{description}</span>
